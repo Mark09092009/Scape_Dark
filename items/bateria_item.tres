@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c707qdrkhfckg"]
+
+[ext_resource type="Script" uid="uid://b7qwnd8bhhr4h" path="res://singleton/ItemData.gd" id="1_u5qxc"]
+[ext_resource type="Texture2D" uid="uid://8hrg2tcfnjvb" path="res://assents/Mini FX, Items & UI/Common Pick-ups/bateriaIcon.png" id="2_qtv5v"]
+
+[resource]
+script = ExtResource("1_u5qxc")
+item_name = "Bateria"
+texture = ExtResource("2_qtv5v")
+metadata/_custom_type_script = "uid://b7qwnd8bhhr4h"

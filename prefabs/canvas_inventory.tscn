@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://xm1gd6fwuiav"]
+
+[ext_resource type="Script" uid="uid://b4ggckwway7r" path="res://InventoryUI.gd" id="1_7a14i"]
+[ext_resource type="Texture2D" uid="uid://dunr1upr2mqvs" path="res://assents/Mini FX, Items & UI/BoxSlot.png" id="2_uson8"]
+
+[node name="CanvasInventory" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -198.0
+offset_right = 582.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 10
+alignment = 1
+script = ExtResource("1_7a14i")
+
+[node name="Box1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_uson8")
+
+[node name="IconItem" type="TextureRect" parent="HBoxContainer/Box1"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 45.0
+offset_right = 198.0
+offset_bottom = 193.0
+
+[node name="Box2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_uson8")
+
+[node name="IconItem" type="TextureRect" parent="HBoxContainer/Box2"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 45.0
+offset_right = 198.0
+offset_bottom = 193.0
+
+[node name="Box3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_uson8")
+
+[node name="IconItem" type="TextureRect" parent="HBoxContainer/Box3"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 45.0
+offset_right = 198.0
+offset_bottom = 193.0

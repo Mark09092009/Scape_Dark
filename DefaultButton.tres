@@ -1,0 +1,47 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cdckq1g3liufq"]
+
+[ext_resource type="FontFile" uid="uid://djieajvy6x7uv" path="res://fonts/PressStart2P-Regular.ttf" id="1_wdwxm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogxlc"]
+bg_color = Color(0.80334795, 0.53910226, 5.7756904e-07, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.898284, 0.80945855, 0, 1)
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1mhy"]
+bg_color = Color(1, 0.9280473, 0.5516812, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.95236915, 0.95160276, 0.6628624, 1)
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msex7"]
+bg_color = Color(0.8627451, 0.85882354, 0.5137255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.62668264, 0.5152058, 0, 1)
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uf8k0"]
+bg_color = Color(0.9236403, 0.57744914, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.82640815, 0.5477104, 0, 1)
+expand_margin_top = 5.0
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_wdwxm")
+Button/styles/focus = SubResource("StyleBoxFlat_ogxlc")
+Button/styles/hover = SubResource("StyleBoxFlat_t1mhy")
+Button/styles/normal = SubResource("StyleBoxFlat_msex7")
+Button/styles/pressed = SubResource("StyleBoxFlat_uf8k0")

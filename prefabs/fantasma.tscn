@@ -1,0 +1,192 @@
+[gd_scene load_steps=22 format=3 uid="uid://lgwfbubp58xh"]
+
+[ext_resource type="Script" uid="uid://cwkysxwnbeouf" path="res://scripts/fantasma.gd" id="1_o7rw7"]
+[ext_resource type="Texture2D" uid="uid://cg6m6m7524ejy" path="res://assents/Luz.png" id="2_x2sh2"]
+[ext_resource type="Texture2D" uid="uid://g66vnyskj7dc" path="res://assents/Sprite Pack 2/3 - Octi/Idle_&_Movement (16 x 16).png" id="3_phjsn"]
+[ext_resource type="PackedScene" uid="uid://b026af208lvbl" path="res://prefabs/hitbox.tscn" id="3_x2sh2"]
+[ext_resource type="Texture2D" uid="uid://beim5i32k31jl" path="res://assents/Sprite Pack 2/3 - Octi/Idle__Movement_verDan (16 x 16).png" id="4_su86r"]
+[ext_resource type="Texture2D" uid="uid://c8xusnx0qtbug" path="res://assents/Sprite Pack 2/3 - Octi/Idle__Movement_ver (16 x 16).png" id="5_31hvi"]
+[ext_resource type="AudioStream" uid="uid://cmi8l55v8r8xb" path="res://sounds/monstro_morto.mp3" id="7_31hvi"]
+[ext_resource type="AudioStream" uid="uid://dy2fu4o3oouac" path="res://sounds/monstro_morto02.mp3" id="8_xyrso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyrso"]
+atlas = ExtResource("3_phjsn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unad6"]
+atlas = ExtResource("3_phjsn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni3vg"]
+atlas = ExtResource("4_su86r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa8v4"]
+atlas = ExtResource("4_su86r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6iib"]
+atlas = ExtResource("5_31hvi")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pkq2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyrso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unad6")
+}],
+"loop": true,
+"name": &"anda",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni3vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa8v4")
+}],
+"loop": true,
+"name": &"anda2",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6iib")
+}],
+"loop": true,
+"name": &"dano",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phjsn"]
+size = Vector2(14.5, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3brn"]
+size = Vector2(8, 3)
+
+[sub_resource type="GDScript" id="GDScript_0vhvw"]
+script/source = "extends Area2D
+var direction_bef = 0
+
+@onready var dano: AudioStreamPlayer = $\"../dano\"
+@onready var morte: AudioStreamPlayer = $\"../morte\"
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		body.velocity.y = -400
+		owner.texture.play(\"dano\")
+		direction_bef = owner.direction
+
+		if owner.life <= 1:
+			Global.score += 200
+			morte.play()
+			owner.direction = 0
+
+			# Acessa os nós diretamente pelo caminho
+			owner.get_node(\"colisao\").set_deferred(\"disabled\", true)
+			owner.get_node(\"colisao2\").set_deferred(\"disabled\", true)
+			
+			# Desativa todas as colisões dentro do Hitbox
+			var hitbox = owner.get_node(\"Hitbox\")
+			hitbox.set_deferred(\"monitoring\", false)
+			hitbox.set_deferred(\"monitorable\", false)
+			for c in hitbox.get_children():
+				if c is CollisionShape2D:
+					c.set_deferred(\"disabled\", true)
+
+			# Animação e remoção
+			owner.texture.play(\"morte\")
+			await get_tree().create_timer(1.0).timeout
+			owner.queue_free()
+
+		else:
+			dano.play()
+			Global.score += 100
+			await get_tree().create_timer(0.2).timeout
+			owner.life -= 1
+			owner.texture.play(\"anda2\")
+			owner.SPEED = 125.0
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su86r"]
+size = Vector2(10, 4.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31hvi"]
+size = Vector2(2, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyrso"]
+size = Vector2(2, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unad6"]
+size = Vector2(12, 2.3125)
+
+[node name="Fantasma" type="CharacterBody2D" groups=["inimigos"]]
+position = Vector2(-8, 13)
+collision_layer = 16
+collision_mask = 205
+script = ExtResource("1_o7rw7")
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(9, -14)
+scale = Vector2(0.04708333, 0.042999998)
+texture = ExtResource("2_x2sh2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -16)
+scale = Vector2(1.01, 1)
+sprite_frames = SubResource("SpriteFrames_3pkq2")
+animation = &"anda"
+autoplay = "anda"
+frame_progress = 0.54442084
+
+[node name="colisao" type="CollisionShape2D" parent="."]
+position = Vector2(8, -11)
+shape = SubResource("RectangleShape2D_phjsn")
+
+[node name="colisao2" type="CollisionShape2D" parent="."]
+position = Vector2(8, -13.5)
+shape = SubResource("RectangleShape2D_g3brn")
+
+[node name="Wall_detector" type="RayCast2D" parent="."]
+position = Vector2(8, -14)
+target_position = Vector2(-8, 0)
+collision_mask = 29
+
+[node name="Hitbox" parent="." groups=["inimigos"] instance=ExtResource("3_x2sh2")]
+script = SubResource("GDScript_0vhvw")
+
+[node name="colisao2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(8, -17.25)
+shape = SubResource("RectangleShape2D_su86r")
+debug_color = Color(0.9875894, 0, 0.316396, 0.41960785)
+
+[node name="colisao1" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(13, -13.5)
+shape = SubResource("RectangleShape2D_31hvi")
+debug_color = Color(0.99529594, 0, 0.21558443, 0.41960785)
+
+[node name="colisao3" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(3, -13.5)
+shape = SubResource("RectangleShape2D_xyrso")
+debug_color = Color(0.98986727, 0, 0.29087272, 0.41960785)
+
+[node name="colisao4" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(8, -9.15625)
+shape = SubResource("RectangleShape2D_unad6")
+debug_color = Color(0.5960065, 0.052198246, 9.62615e-08, 0.41960785)
+
+[node name="dano" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_31hvi")
+volume_db = -5.0
+pitch_scale = 1.4
+
+[node name="morte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xyrso")
+volume_db = 5.0
+pitch_scale = 0.8
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

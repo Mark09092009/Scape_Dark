@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bhhd1gkif7fhm"]
+
+[ext_resource type="Script" uid="uid://b7qwnd8bhhr4h" path="res://singleton/ItemData.gd" id="1_3ygsu"]
+[ext_resource type="Texture2D" uid="uid://ba4sjm2716ngp" path="res://assents/Mini FX, Items & UI/Common Pick-ups/keyIcon.png" id="2_lpfm3"]
+
+[resource]
+script = ExtResource("1_3ygsu")
+item_name = "Key"
+texture = ExtResource("2_lpfm3")
+metadata/_custom_type_script = "uid://b7qwnd8bhhr4h"

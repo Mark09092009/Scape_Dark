@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://yti34rda0njd"]
+
+[ext_resource type="Script" uid="uid://ctxkhshlpou2u" path="res://scripts/monstrinho.gd" id="1_0d8em"]
+[ext_resource type="Texture2D" uid="uid://ctvtk2gjwvvkf" path="res://assents/Sprite Pack 2/6 - Robo Totem/Walking (16 x 16).png" id="2_0pmdf"]
+[ext_resource type="Texture2D" uid="uid://cg6m6m7524ejy" path="res://assents/Luz.png" id="2_cf0u8"]
+[ext_resource type="PackedScene" uid="uid://b026af208lvbl" path="res://prefabs/hitbox.tscn" id="3_cf0u8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jfxd"]
+size = Vector2(10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7i27"]
+atlas = ExtResource("2_0pmdf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45gcy"]
+atlas = ExtResource("2_0pmdf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbqhw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7i27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45gcy")
+}],
+"loop": true,
+"name": &"anda",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn7qm"]
+size = Vector2(12, 4.5)
+
+[node name="Monstrinho" type="CharacterBody2D" groups=["inimigos"]]
+collision_layer = 16
+collision_mask = 213
+script = ExtResource("1_0d8em")
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(0, -1.000001)
+scale = Vector2(0.03375, 0.029583333)
+texture = ExtResource("2_cf0u8")
+
+[node name="Wall_detector" type="RayCast2D" parent="."]
+target_position = Vector2(-7, 0)
+collision_mask = 29
+
+[node name="Colisao" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_5jfxd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fbqhw")
+animation = &"anda"
+autoplay = "anda"
+frame_progress = 0.53761804
+
+[node name="Hitbox" parent="." instance=ExtResource("3_cf0u8")]
+
+[node name="Colisao" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -3.25)
+shape = SubResource("RectangleShape2D_fn7qm")
+debug_color = Color(0.9948794, 0, 0.22241142, 0.41960785)

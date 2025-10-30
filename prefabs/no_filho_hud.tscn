@@ -1,0 +1,160 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5p02lygj378j"]
+
+[ext_resource type="Script" uid="uid://davc5o07kqxid" path="res://scripts/hud_manage.gd" id="1_p77bn"]
+[ext_resource type="FontFile" uid="uid://djieajvy6x7uv" path="res://fonts/PressStart2P-Regular.ttf" id="2_4qlx5"]
+[ext_resource type="Texture2D" uid="uid://bbjarycvb01ox" path="res://assents/life.png" id="3_dbb0m"]
+
+[sub_resource type="FontFile" id="FontFile_id6wt"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_meaxx"]
+fallbacks = Array[Font]([ExtResource("2_4qlx5")])
+base_font = SubResource("FontFile_id6wt")
+
+[node name="no_filho_HUD" type="Control"]
+layout_mode = 3
+anchor_right = 0.4965278
+anchor_bottom = 0.49382716
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_p77bn")
+defaunt_minutes = 4
+defaunt_seconds = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="clock_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0015432099
+anchor_right = 1.0
+anchor_bottom = 0.9984568
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="time_container" type="HBoxContainer" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="time_label" type="Label" parent="container/time_container"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_meaxx")
+theme_override_font_sizes/font_size = 8
+text = "TIme:"
+uppercase = true
+
+[node name="time_counter" type="Label" parent="container/time_container"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_meaxx")
+theme_override_font_sizes/font_size = 8
+text = "00:00"
+uppercase = true
+
+[node name="score_container" type="HBoxContainer" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="score_label" type="Label" parent="container/score_container"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_meaxx")
+theme_override_font_sizes/font_size = 8
+text = "SCORE:"
+uppercase = true
+
+[node name="score_counter" type="Label" parent="container/score_container"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_meaxx")
+theme_override_font_sizes/font_size = 8
+text = "000000"
+uppercase = true
+
+[node name="life_container" type="HBoxContainer" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="life_icon" type="TextureRect" parent="container/life_container"]
+layout_mode = 2
+texture = ExtResource("3_dbb0m")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="life_separator" type="Label" parent="container/life_container"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_meaxx")
+theme_override_font_sizes/font_size = 8
+text = " "
+uppercase = true
+
+[node name="life_counter" type="Label" parent="container/life_container"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_meaxx")
+theme_override_font_sizes/font_size = 8
+text = "03"
+uppercase = true
+
+[connection signal="timeout" from="clock_timer" to="." method="_on_clock_timer_timeout"]

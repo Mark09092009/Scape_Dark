@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://b4ljgc47rgm7"]
+
+[ext_resource type="Texture2D" uid="uid://bs0xj5nqfqpcq" path="res://assents/Mini FX, Items & UI/Common Pick-ups/key.png" id="1_prtrg"]
+[ext_resource type="Script" uid="uid://bgaljrglgcgnh" path="res://scripts/key.gd" id="1_wc646"]
+[ext_resource type="Texture2D" uid="uid://b4c1q3o7x2t7n" path="res://assents/Mini FX, Items & UI/Effects/Yellow_Sparkle (16 x 16).png" id="2_kien5"]
+[ext_resource type="AudioStream" uid="uid://besykemhvmciu" path="res://sounds/UsandoItens.wav" id="4_kien5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gorj8"]
+atlas = ExtResource("2_kien5")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3uru"]
+atlas = ExtResource("2_kien5")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o165"]
+atlas = ExtResource("2_kien5")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv3et"]
+atlas = ExtResource("2_kien5")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqaf4"]
+atlas = ExtResource("1_prtrg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc646"]
+atlas = ExtResource("1_prtrg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kien5"]
+atlas = ExtResource("1_prtrg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsnh1"]
+atlas = ExtResource("1_prtrg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gorj8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gorj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3uru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o165")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv3et")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqaf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc646")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kien5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsnh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3uru"]
+radius = 5.0
+height = 18.0
+
+[node name="Key" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_wc646")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_gorj8")
+autoplay = "default"
+frame_progress = 0.20017679
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_j3uru")
+
+[node name="pego" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kien5")
+volume_db = -5.0
+pitch_scale = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

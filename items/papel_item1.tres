@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b1v0r2gd3p1lj"]
+
+[ext_resource type="Texture2D" uid="uid://cjfis0jqtyt3l" path="res://assents/PapelAberto2.png" id="1_6jxab"]
+[ext_resource type="Script" uid="uid://b7qwnd8bhhr4h" path="res://singleton/ItemData.gd" id="1_h4ohe"]
+[ext_resource type="Texture2D" uid="uid://b3rjratu6p7vt" path="res://assents/Mini FX, Items & UI/Common Pick-ups/papelIcon.png" id="2_2hmot"]
+
+[resource]
+script = ExtResource("1_h4ohe")
+item_name = "Papel"
+texture = ExtResource("2_2hmot")
+effect = ExtResource("1_6jxab")
+metadata/_custom_type_script = "uid://b7qwnd8bhhr4h"

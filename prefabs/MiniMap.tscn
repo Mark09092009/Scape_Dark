@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceqkhvyq487dw"]
+
+[ext_resource type="Texture2D" uid="uid://csse737w51qgy" path="res://assents/Pixil files/papelAberto.tga" id="1_cwue1"]
+[ext_resource type="Script" uid="uid://c4ugmftyjdrv2" path="res://scripts/player_icon.gd" id="2_f0jdj"]
+[ext_resource type="Texture2D" uid="uid://71faw3qxhmsr" path="res://assents/Sprite Pack 3/3 - Robot J5/Jumping (32 x 32).png" id="3_mgxme"]
+
+[sub_resource type="GDScript" id="GDScript_c8c8d"]
+
+[node name="MiniMapUI" type="CanvasLayer"]
+
+[node name="MiniMap_Container" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(632, 376)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="back_ground" type="TextureRect" parent="MiniMap_Container"]
+custom_minimum_size = Vector2(632, 376)
+layout_mode = 0
+offset_left = -18.0
+offset_top = -9.0
+offset_right = 654.0
+offset_bottom = 390.0
+texture = ExtResource("1_cwue1")
+
+[node name="Control" type="Control" parent="MiniMap_Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_f0jdj")
+
+[node name="Player_icon" type="Sprite2D" parent="MiniMap_Container/Control"]
+position = Vector2(20, 18)
+texture = ExtResource("3_mgxme")
+script = SubResource("GDScript_c8c8d")
